@@ -1,0 +1,10 @@
+version: '3'
+services:
+  dotfiles-test:
+    build: .
+    volumes:
+      - .:/home/testuser/dotfiles
+    environment:
+      - TERM=xterm-256color
+    tty: true
+    stdin_open: true
