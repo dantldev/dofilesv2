@@ -1,5 +1,4 @@
 - name: Install system packages
-  become: true
   apt:
     name:
       - unzip
@@ -26,14 +25,15 @@
       - vim
       - python3-pip
     state: present
+    become: true
 
 - name: Clean apt cache
-  become: true
   apt:
     autoclean: yes
+    become: true
 
 - name: Remove unnecessary packages
-  become: true
   apt:
     autoremove: yes
+    become: true
    
