@@ -1,16 +1,19 @@
 ## Los dotfiles.
-> Esta vez sí.
 
-Buildear en docker para probar:
+> wip
 
-`docker-compose up -d --build`
+![Ansible logo](https://www.ansible.com/images/ansible_logo-small-15.png)
 
-then
+Ansible es una herramienta fascinante. Se trata de un gestor de configuración de sistemas.
 
-`docker-compose exec dotfiles-test zsh`
+En este repo uso ansible para que, desde una máquina limpia, se puedan instalar y
+configurar todas las cosas que necesito en mi development environment.
 
-then test
+### Ansible Vault
 
-then `exit`
+Si estás leyendo este repo, es probable que te hayas fijado que hay archivos con
+muchos numeros random y que no se pueden ver.
 
-then `docker-compose down`
+Esto es porque estos archivos están encriptados con ansible vault.
+
+Una forma _divina_ de guardar cosas sensibles en un repo público.
