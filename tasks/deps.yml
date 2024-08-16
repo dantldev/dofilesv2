@@ -24,6 +24,7 @@
       - tmux
       - vim
       - python3-pip
+      - stow
     state: present
   become: true
 
