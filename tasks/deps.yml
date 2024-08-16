@@ -25,15 +25,15 @@
       - vim
       - python3-pip
     state: present
-    become: true
+  become: true
 
 - name: Clean apt cache
   apt:
     autoclean: yes
-    become: true
+  become: true
 
 - name: Remove unnecessary packages
   apt:
     autoremove: yes
-    become: true
+  become: true
    
