@@ -4,7 +4,7 @@
     - name: Update apt cache
       apt:
         update_cache: true
-    - become: true
+      - become: true
   tasks:
     - include_tasks: tasks/deps.yml
     - include_tasks: tasks/zsh.yml
