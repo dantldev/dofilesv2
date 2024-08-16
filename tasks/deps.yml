@@ -1,0 +1,36 @@
+- name: Install system packages
+  apt:
+    name:
+      - unzip
+      - make
+      - cmake
+      - gettext
+      - libtool
+      - libtool-bin
+      - autoconf
+      - automake
+      - g++
+      - pkg-config
+      - build-essential
+      - libssl-dev
+      - libbz2-dev
+      - zlib1g-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - llvm
+      - curl
+      - wget
+      - git
+      - tmux
+      - vim
+      - python3-pip
+    state: present
+
+- name: Clean apt cache
+  apt:
+    autoclean: yes
+
+- name: Remove unnecessary packages
+  apt:
+    autoremove: yes
+   

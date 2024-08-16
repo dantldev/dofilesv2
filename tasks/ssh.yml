@@ -1,0 +1,61 @@
+- name: Ensure .ssh directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh"
+    state: directory
+    mode: '0700'
+
+- name: Copy personal SSH private key
+  copy:
+    src: vault/id_ed25519_personal
+    dest: "{{ ansible_env.HOME }}/.ssh/id_ed25519_personal"
+    mode: '0600'
+
+- name: Copy personal SSH public key
+  copy:
+    src: vault/id_ed25519_personal.pub
+    dest: "{{ ansible_env.HOME }}/.ssh/id_ed25519_personal.pub"
+    mode: '0644'
+
+- name: Copy work SSH private key
+  copy:
+    src: vault/id_ed25519_work
+    dest: "{{ ansible_env.HOME }}/.ssh/id_ed25519_work"
+    mode: '0600'
+
+- name: Copy work SSH public key
+  copy:
+    src: vault/id_ed25519_work.pub
+    dest: "{{ ansible_env.HOME }}/.ssh/id_ed25519_work.pub"
+    mode: '0644'
+
+- name: Ensure SSH config file exists
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh/config"
+    state: touch
+    mode: '0600'
+
+- name: Configure SSH for personal key
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.ssh/config"
+    block: |
+      Host github.com-personal
+        HostName github.com
+        User git
+        IdentityFile ~/.ssh/id_ed25519_personal
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - PERSONAL"
+
+- name: Configure SSH for work key
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.ssh/config"
+    block: |
+      Host github.com-work
+        HostName github.com
+        User git
+        IdentityFile ~/.ssh/id_ed25519_work
+    marker: "# {mark} ANSIBLE MANAGED BLOCK - WORK"
+
+- name: Set correct permissions for .ssh directory
+  file:
+    path: "{{ ansible_env.HOME }}/.ssh"
+    mode: '0700'
+    recurse: yes

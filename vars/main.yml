@@ -1,0 +1,20 @@
+system_packages:
+  - unzip
+  - make
+  - cmake
+  - gettext
+  - libtool
+  - build-essential
+  - software-properties-common
+  - curl
+  - wget
+  - git
+  - htop
+  - tmux
+  - vim
+  - python3-pip
+  - python3-venv
+  - ca-certificates
+  - gnupg
+  - lsb-release
+  - apt-transport-https

@@ -1,0 +1,14 @@
+- hosts: localhost
+  become: true
+  pre_tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: true
+  tasks:
+    - include: tasks/deps.yml
+    - include: tasks/zsh.yml
+    - include: tasks/node.yml
+    - include: tasks/ssh.yml
+    - include: tasks/heroku.yml
+    - include: tasks/aws.yml
+
