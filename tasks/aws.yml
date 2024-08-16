@@ -3,12 +3,18 @@
   register: aws_cli_check
   ignore_errors: yes
   changed_when: false
+  tags:
+    - aws
+    - install
 
 - name: Download AWS CLI installer
   get_url:
     url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
     dest: "/tmp/awscliv2.zip"
   when: aws_cli_check.rc != 0
+  tags:
+    - aws
+    - install
 
 - name: Unzip AWS CLI installer
   unarchive:
@@ -16,11 +22,17 @@
     dest: "/tmp"
     remote_src: yes
   when: aws_cli_check.rc != 0
+  tags:
+    - aws
+    - install
 
 - name: Install AWS CLI
   command: "/tmp/aws/install"
   become: yes
   when: aws_cli_check.rc != 0
+  tags:
+    - aws
+    - install
 
 - name: Clean up AWS CLI installer files
   file:
@@ -30,12 +42,21 @@
     - "/tmp/awscliv2.zip"
     - "/tmp/aws"
   when: aws_cli_check.rc != 0
+  tags:
+    - aws
+    - install
 
 - name: Verify AWS CLI installation
   command: aws --version
   register: aws_cli_version
   changed_when: false
+  tags:
+    - aws
+    - install
 
 - name: Display AWS CLI version
+  tags:
+    - aws
+    - install
   debug:
     var: aws_cli_version.stdout

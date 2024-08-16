@@ -1,0 +1,21 @@
+- name: Clone Neovim
+  ansible.builtin.git:
+    repo: 'https://github.com/neovim/neovim.git'
+    dest: "{{ lookup('env', 'HOME') }}/neovim"
+  tags:
+    - nvim
+    - install
+
+- name: Build neovim
+  shell: "cd {{ lookup('env', 'HOME') }}/neovim && make"
+  become: true
+  tags:
+    - nvim
+    - install
+
+- name: Install neovim
+  shell: "cd {{ lookup('env', 'HOME') }}/neovim && make install"
+  become: true
+  tags:
+    - nvim
+    - install

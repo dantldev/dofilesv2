@@ -27,14 +27,19 @@
       - stow
     state: present
   become: true
+  tags:
+    - install
 
 - name: Clean apt cache
   apt:
     autoclean: yes
   become: true
+  tags:
+    - install
 
 - name: Remove unnecessary packages
   apt:
     autoremove: yes
   become: true
-   
+  tags:
+    - install

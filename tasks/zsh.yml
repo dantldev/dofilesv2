@@ -1,10 +1,21 @@
 - name: Install zsh
   apt: name=zsh
   become: true
+  tags:
+    - zsh
+    - install
+
 - name: Change shell to zsh
   shell: chsh -s `which zsh`
   become: true
+  tags:
+    - zsh
+    - install
+
 - name: Install oh-my-zsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   args:
     creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  tags:
+    - zsh
+    - install

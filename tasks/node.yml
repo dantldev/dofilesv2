@@ -1,15 +1,20 @@
----
 - name: Check if fnm is installed
   shell: command -v fnm
   register: fnm_exists
   ignore_errors: yes
   changed_when: false
+  tags:
+    - node
+    - install
 
 - name: Install fnm
   shell: curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
   args:
     creates: "{{ ansible_env.HOME }}/.fnm"
   when: fnm_exists.rc != 0
+  tags:
+    - node
+    - install
 
 - name: Add fnm initialization to .zshrc
   lineinfile:
@@ -22,6 +27,9 @@
         eval "`fnm env`"
       fi
     state: present
+  tags:
+    - node
+    - install
 
 - name: Install Node.js
   shell: |
@@ -31,6 +39,9 @@
     executable: /bin/zsh
   register: node_install
   changed_when: "'installed' in node_install.stdout"
+  tags:
+    - node
+    - install
 
 - name: Verify Node.js installation
   shell: |
@@ -40,10 +51,16 @@
     executable: /bin/zsh
   register: node_version_check
   changed_when: false
+  tags:
+    - node
+    - install
 
 - name: Display Node.js version
   debug:
     var: node_version_check.stdout
+  tags:
+    - node
+    - install
 
 - name: Verify npm installation
   shell: |
@@ -53,10 +70,16 @@
     executable: /bin/zsh
   register: npm_version_check
   changed_when: false
+  tags:
+    - node
+    - install
 
 - name: Display npm version
   debug:
     var: npm_version_check.stdout
+  tags:
+    - node
+    - install
 
 - name: Install global npm packages
   shell: |
@@ -69,6 +92,9 @@
     - serve
   register: npm_global_install
   changed_when: "'added' in npm_global_install.stdout"
+  tags:
+    - node
+    - install
 
 - name: Verify global npm package installations
   shell: |
@@ -81,7 +107,13 @@
     - serve
   register: npm_global_versions
   changed_when: false
+  tags:
+    - node
+    - install
 
 - name: Display global npm package versions
   debug:
     var: npm_global_versions
+  tags:
+    - node
+    - install

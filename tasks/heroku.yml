@@ -1,9 +1,16 @@
 - name: Install Heroku CLI
+  become: true
   shell: |
     curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+  tags:
+    - heroku
+    - install
 
 - name: Add Heroku CLI to PATH
   lineinfile:
     path: "{{ ansible_env.HOME }}/.zshrc"
     line: 'export PATH="$PATH:/usr/local/heroku/bin"'
     state: present
+  tags:
+    - heroku
+    - install

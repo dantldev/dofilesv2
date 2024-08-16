@@ -5,11 +5,35 @@
       apt:
         update_cache: true
       become: true
+      tags:
+        - install
   tasks:
     - include_tasks: tasks/deps.yml
+      tags: 
+        - install
     - include_tasks: tasks/zsh.yml
+      tags:
+        - zsh
+        - install
     - include_tasks: tasks/node.yml
+      tags:
+        - node
+        - install
     - include_tasks: tasks/ssh.yml
+      tags:
+        - ssh
+        - install
     - include_tasks: tasks/heroku.yml
+      tags:
+        - heroku
+        - install
     - include_tasks: tasks/aws.yml
+      tags:
+        - aws
+        - install
+    - include_tasks: tasks/nvim.yml
+      tags:
+        - nvim
+        - install
+
 
