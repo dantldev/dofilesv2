@@ -1,4 +1,5 @@
 - name: Install system packages
+  become: true
   apt:
     name:
       - unzip
@@ -27,10 +28,12 @@
     state: present
 
 - name: Clean apt cache
+  become: true
   apt:
     autoclean: yes
 
 - name: Remove unnecessary packages
+  become: true
   apt:
     autoremove: yes
    
