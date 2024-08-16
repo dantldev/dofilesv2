@@ -5,10 +5,10 @@
       apt:
         update_cache: true
   tasks:
-    - include: tasks/deps.yml
-    - include: tasks/zsh.yml
-    - include: tasks/node.yml
-    - include: tasks/ssh.yml
-    - include: tasks/heroku.yml
-    - include: tasks/aws.yml
+    - include_tasks: tasks/deps.yml
+    - include_tasks: tasks/zsh.yml
+    - include_tasks: tasks/node.yml
+    - include_tasks: tasks/ssh.yml
+    - include_tasks: tasks/heroku.yml
+    - include_tasks: tasks/aws.yml
 
