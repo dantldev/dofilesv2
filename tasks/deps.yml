@@ -25,10 +25,14 @@
       - vim
       - python3-pip
       - stow
+      - ripgrep
+      - gcc
+      - xclip
     state: present
   become: true
   tags:
     - install
+    - deps
 
 - name: Clean apt cache
   apt:
@@ -36,6 +40,7 @@
   become: true
   tags:
     - install
+    - deps
 
 - name: Remove unnecessary packages
   apt:
@@ -43,3 +48,4 @@
   become: true
   tags:
     - install
+    - deps

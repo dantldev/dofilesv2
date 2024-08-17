@@ -1,0 +1,8 @@
+- name: Stow dotfiles
+  command: stow -d {{ playbook_dir }}/config -t {{ ansible_env.HOME }} {{ item }}
+  loop:
+    - nvim
+    - tmux
+  tags:
+    - install
+    - stow

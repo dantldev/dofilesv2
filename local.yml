@@ -11,6 +11,7 @@
     - include_tasks: tasks/deps.yml
       tags: 
         - install
+        - deps
     - include_tasks: tasks/zsh.yml
       tags:
         - zsh
@@ -34,6 +35,10 @@
     - include_tasks: tasks/nvim.yml
       tags:
         - nvim
+        - install
+    - include_tasks: tasks/stow.yml
+      tags:
+        - stow
         - install
 
 
