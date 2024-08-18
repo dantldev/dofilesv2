@@ -44,5 +44,9 @@
       tags:
         - deno
         - install
+    - include_tasks: tasks/pnpm.yml
+      tags:
+        - pnpm
+        - install
 
 
