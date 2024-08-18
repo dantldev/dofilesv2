@@ -40,5 +40,9 @@
       tags:
         - stow
         - install
+    - include_tasks: tasks/deno.yml
+      tags:
+        - deno
+        - install
 
 

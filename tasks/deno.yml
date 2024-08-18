@@ -1,0 +1,41 @@
+- name: Check if Deno is installed
+  shell: command -v deno
+  register: deno_exists
+  ignore_errors: yes
+  changed_when: false
+  tags:
+    - deno
+    - install
+
+- name: Install Deno
+  shell: curl -fsSL https://deno.land/x/install/install.sh | sh
+  args:
+    creates: "{{ ansible_env.HOME }}/.deno"
+  when: deno_exists.rc != 0
+  tags:
+    - deno
+    - install
+
+- name: Add Deno initialization to .zshrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    line: |
+      # Deno
+      export DENO_INSTALL="{{ ansible_env.HOME }}/.deno"
+      export PATH="$DENO_INSTALL/bin:$PATH"
+    state: present
+  tags:
+    - deno
+    - install
+
+- name: Verify Deno installation
+  shell: |
+    source {{ ansible_env.HOME }}/.zshrc
+    deno --version
+  args:
+    executable: /bin/zsh
+  register: deno_version_check
+  changed_when: false
+  tags:
+    - deno
+    - install
