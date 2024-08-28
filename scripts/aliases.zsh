@@ -1,4 +1,5 @@
 alias vim="nvim"
+alias nvm='fnm'
 
 # List directory contents
 alias ls='ls --color=auto'
